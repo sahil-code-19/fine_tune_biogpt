@@ -1,0 +1,45 @@
+{
+  "added_tokens_decoder": {
+    "0": {
+      "content": "<s>",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "1": {
+      "content": "<pad>",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "2": {
+      "content": "</s>",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "3": {
+      "content": "<unk>",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    }
+  },
+  "backend": "custom",
+  "bos_token": "<s>",
+  "eos_token": "</s>",
+  "is_local": false,
+  "model_max_length": 1024,
+  "pad_token": "</s>",
+  "sep_token": "</s>",
+  "tokenizer_class": "BioGptTokenizer",
+  "unk_token": "<unk>"
+}
