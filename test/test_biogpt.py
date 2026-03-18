@@ -8,9 +8,9 @@ from transformers import AutoModelForCausalLM, AutoTokenizer
 # ---------------- CONFIG ---------------- #
 
 base_model = "microsoft/BioGPT-Large"
-adapter_path = "./biogpt-final-v3"
+adapter_path = "../models_fine_tuned/biogpt-lora"
 
-DATASET_PATH = "new_drugs_qa_pairs_v2.json"
+DATASET_PATH = "../datasets/82_plumbs_drugs.json"
 
 NUM_QUESTIONS = 10
 
@@ -26,7 +26,7 @@ print("Loading model...")
 
 tokenizer = AutoTokenizer.from_pretrained(base_model)
 
-model = AutoModelForCausalLM.from_pretrained(base_model, torch_dtype=torch.float32)
+model = AutoModelForCausalLM.from_pretrained(base_model, torch_dtype=torch.float16, device_map="auto")
 
 model = PeftModel.from_pretrained(model, adapter_path)
 
@@ -67,7 +67,7 @@ for i, idx in enumerate(indices):
 
     prompt = f"{SYSTEM_PROMPT}\n\n### Question:\n{question}\n\n### Answer:\n"
 
-    inputs = tokenizer(prompt, return_tensors="pt")
+    inputs = tokenizer(prompt, return_tensors="pt").to(model.device)
 
     with torch.no_grad():
         input_length = inputs["input_ids"].shape[1]

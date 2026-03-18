@@ -15,10 +15,10 @@ from peft import LoraConfig, TaskType, get_peft_model
 # ---------------- CONFIG ---------------- #
 
 MODEL_NAME = "microsoft/BioGPT-Large"
-QA_JSON_PATH = "./new_drugs_qa_pairs_v2.json"
+QA_JSON_PATH = "../datasets/82_plumbs_drugs.json"
 
-OUTPUT_DIR = "./biogpt-lora-v3"
-FINAL_DIR = "./biogpt-final-v3"
+OUTPUT_DIR = "../models_fine_tuned/biogpt-lora-v3"
+FINAL_DIR = "../models_fine_tuned/biogpt-final-v3"
 
 MAX_SEQ_LEN = 768
 TRAIN_BATCH_SIZE = 2
@@ -217,7 +217,7 @@ def test_model(model, tokenizer):
         f"### Answer:\n"
     )
 
-    inputs = tokenizer(prompt, return_tensors="pt").to("cuda")
+    inputs = tokenizer(prompt, return_tensors="pt").to(model.device)
 
     with torch.no_grad():
 
@@ -254,7 +254,7 @@ def main():
 
     model = AutoModelForCausalLM.from_pretrained(
         MODEL_NAME,
-        dtype=torch.float16,
+        torch_dtype=torch.float16,
         device_map="auto",
         tie_word_embeddings=False
     )
