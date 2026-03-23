@@ -124,9 +124,12 @@ RULES:
    - NEVER use "All of the above" or "None of the above" as an option
    - Count MCQs before finishing — remove extras if more than 8
 
-3. Answers must NOT repeat question wording — rephrase fully.
+3. Answers MUST provide full context in complete sentences. For factual and dosage questions, repeat the core premise of the question in the answer so the model learns the full association.
 
-4. Preserve exact dosages as written (e.g. "12.5 mg/dog NOT mg/kg PO BID").
+4. FORMATTING DOSAGE & NUMERICAL Q&A: When providing a dosage or specific numerical value, REPEAT the exact number multiple times in the answer to reinforce it. 
+   - Example (BAD): "12.5 – 25 mg/dog PO twice daily"
+   - Example (GOOD): "The dosage of Acarbose for dogs is 12.5 – 25 mg/dog PO twice daily. Specifically, 12.5 – 25 mg/dog is given with each meal."
+   - Preserve exact dosages as written (e.g. "12.5 mg/dog NOT mg/kg PO BID").
 
 5. Separate dogs, cats, horses when data differs.
 
